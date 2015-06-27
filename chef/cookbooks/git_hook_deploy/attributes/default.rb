@@ -1,0 +1,1 @@
+default['git_hook_deploy']['environment'] 	= 'prod'

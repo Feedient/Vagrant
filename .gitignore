@@ -1,0 +1,5 @@
+.vagrant/
+www/
+logs/api_server/**
+logs/frontend_server/**
+logs/mongodb_server/**

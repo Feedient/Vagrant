@@ -1,0 +1,16 @@
+var config = {
+	server: {
+		port: <%= node['metrics']['default']['port'] %>,
+		host: '<%= node["metrics"]["default"]["host"] %>',
+		flushInterval: <%= node['metrics']['default']['flushInterval'] %>
+	},
+	authentication: {
+		key: '<%= node["metrics"]["default"]["key"] %>'
+	},
+	db: {
+		name: '<%= node["metrics"]["default"]["db_name"] %>',
+		url: '<%= node["metrics"]["default"]["db_url"] %>'
+	}
+};
+
+module.exports = config;

@@ -1,0 +1,106 @@
+# mongod.conf
+
+# Where to store the data.
+
+# Note: if you run mongodb as a non-root user (recommended) you may
+# need to create and set permissions for this directory manually,
+# e.g., if the parent directory isn't mutable by the mongodb user.
+dbpath=<%= @dbpath %>
+
+#where to log
+logpath=<%= @logpath %>
+logappend=true
+
+# Port the server runs on
+port = <%= @port %>
+
+# Listen to local interface only. Comment out to listen on all interfaces.
+<% if @local_only %>
+bind_ip = 127.0.0.1
+<% else -%>
+#bind_ip = 127.0.0.1
+<% end -%>
+
+# Controls write-ahead journaling
+<% if @journal %>
+journal=true
+<% else -%>
+nojournal=true
+<% end -%>
+
+# Enables periodic logging of CPU utilization and I/O wait
+#cpu = true
+
+# Turn on/off security.  Off is currently the default
+# Turn on/off security. Off is currently the default
+<% if @auth or @keyfile %>
+#auth=true
+<% if @keyfile %>
+keyfile=<%= @keyfile %>
+<% end -%>
+<% else -%>
+noauth=true
+<% end -%>
+
+# Verbose logging output.
+#verbose = true
+
+# Inspect all client data for validity on receipt (useful for
+# developing drivers)
+#objcheck = true
+
+# Enable db quota management
+#quota = true
+# Set oplogging level where n is
+#   0=off (default)
+#   1=W
+#   2=R
+#   3=both
+#   7=W+some reads
+#diaglog = 0
+
+# Ignore query hints
+#nohints = true
+
+# Disable the HTTP interface (Defaults to localhost:28017).
+<% if @nohttpinterface %>
+# Disable the HTTP interface
+nohttpinterface=true
+<% elsif @rest -%>
+# Enable the HTTP interface (Defaults to localhost:28017).
+rest=true
+<% end -%>
+
+# Turns off server-side scripting.  This will result in greatly limited
+# functionality
+#noscripting = true
+
+# Turns off table scans.  Any query that would do a table scan fails.
+#notablescan = true
+
+# Disable data file preallocation.
+#noprealloc = true
+
+# Specify .ns file size for new databases.
+# nssize = <size>
+
+# Replication Options
+
+# in replicated mongo databases, specify the replica set name here
+<% if @replicaset %>
+# in replica set configuration, specify the name of the replica set
+replSet=<%= @replicaset %>
+<% end -%>
+# maximum size in megabytes for replication operation log
+#oplogSize=1024
+# path to a key file storing authentication info for connections
+# between replica set members
+#keyFile=/path/to/keyfile
+
+<% if @fork %>
+fork=true
+<% end -%>
+
+<% if @quiet %>
+quiet=true
+<% end -%>

@@ -1,0 +1,5 @@
+supervisord.conf.erb:
+    perms: 0644
+    target: /etc/supervisor/conf.d/programs.conf
+    config:
+        environment: development

@@ -1,0 +1,14 @@
+[supervisord]
+nodaemon=true
+
+<% if environment == 'development'%>
+<% else %>
+[program:prod_metrics_server]
+directory=/var/www/metrics.feedient.com
+command=node server.js
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/prod.metrics.feedient.com.err.log
+stdout_logfile=/var/log/prod.metrics.feedient.com.out.log
+stopsignal=QUIT
+<% end %>

@@ -1,0 +1,1 @@
+default[:newrelic][:license_key] = "18a39e6ce688b304360e3408bd9e2a98a15b64e9"

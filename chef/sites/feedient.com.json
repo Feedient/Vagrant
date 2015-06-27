@@ -1,0 +1,22 @@
+{
+	"name": "feedient.com",
+	"description": "The server including api and normal to load feedient.com and api.feedient.com",
+	"nginx": {
+		"environment": "prod"
+	},
+    "supervisord": {
+        "environment": "prod"
+    },
+    "mongodb": {
+    	"environment": "prod"	
+    },
+	"run_list": [
+		"recipe[common-packages]",
+		"recipe[nginx]",
+		"recipe[mongodb]",
+		"recipe[nodejs]",
+        "recipe[supervisord]",
+        "recipe[feedient-metrics]",
+        "recipe[newrelic]"
+	]
+}

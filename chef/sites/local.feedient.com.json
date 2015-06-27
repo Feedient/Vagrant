@@ -1,0 +1,22 @@
+{
+	"name": "local.feedient.com",
+	"description": "The server including api and normal to load local.feedient.com and local.api.feedient.com",
+	"nginx": {
+		"environment": "dev"
+	},
+    "supervisord": {
+        "environment": "dev"
+    },
+    "mongodb": {
+    	"environment": "dev",
+    	"local_only": false	
+    },
+	"run_list": [
+		"recipe[common-packages]",
+		"recipe[nginx]",
+		"recipe[mongodb]",
+		"recipe[nodejs]",
+        "recipe[supervisord]",
+        "recipe[feedient-metrics]"
+	]
+}

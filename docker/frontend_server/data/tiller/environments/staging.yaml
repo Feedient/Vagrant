@@ -1,0 +1,7 @@
+nginx.conf.erb:
+    perms: 0644
+    target: /etc/nginx/nginx.conf
+    config:
+        environment: staging
+        access_log_dir: /var/log/nginx/access.log
+        error_log_dir: /var/log/nginx/error.log

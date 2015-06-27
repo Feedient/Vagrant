@@ -1,0 +1,28 @@
+[supervisord]
+nodaemon=true
+
+<% if environment == 'development'%>
+[program:api_server]
+directory=/var/www/api.feedient.com
+command=forever --watch app.js
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/api.feedient.com.err.log
+stdout_logfile=/var/log/api.feedient.com.out.log
+<% elsif environment == 'staging' %>
+[program:test_api_server]
+directory=/var/www/test.api.feedient.com
+command=node app.js stag 8002
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/test.api.feedient.com.err.log
+stdout_logfile=/var/log/test.api.feedient.com.out.log
+<% else %>
+[program:prod_api_server]
+directory=/var/www/prod.api.feedient.com
+command=node app.js prod 8000
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/prod.api.feedient.com.err.log
+stdout_logfile=/var/log/prod.api.feedient.com.out.log
+<% end %>

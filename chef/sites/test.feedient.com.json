@@ -1,0 +1,21 @@
+{
+	"name": "test.feedient.com",
+	"description": "The server including api and normal to load test.feedient.com and test.api.feedient.com",
+	"nginx": {
+		"environment": "stag"
+	},
+    "supervisord": {
+        "environment": "stag"
+    },
+    "mongodb": {
+    	"environment": "stag"	
+    },
+	"run_list": [
+		"recipe[common-packages]",
+		"recipe[nginx]",
+		"recipe[mongodb]",
+		"recipe[nodejs]",
+        "recipe[supervisord]",
+        "recipe[feedient-metrics]"
+	]
+}
